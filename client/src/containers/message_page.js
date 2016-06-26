@@ -49,7 +49,13 @@ export class MessagePage extends Component {
   });
   }
 
-  sendMessage() {
+  sendMessage(event) {
+
+      event.preventDefault();
+
+      console.log('this is name', name);
+
+      console.log("this is the event", event);
 
       console.log('inside sendMessage');
 
@@ -68,13 +74,13 @@ export class MessagePage extends Component {
       
 /// example code below
 
-let socket = io.connect('http://localhost/kyle');
+      let socket = io.connect('http://localhost/kyle');
 
-    socket.emit('message', "We sent it full circle");
-    socket.on('message', function (msg) {
-       console.log(msg);
-       
-    });
+      socket.emit('message', "We sent it full circle");
+      socket.on('message', function (msg) {
+         console.log(msg);
+         
+      });
 
 
   }
@@ -122,7 +128,7 @@ let socket = io.connect('http://localhost/kyle');
               <form>
                   <label> Write Message </label>
                   <textarea className='messageToSend' rows = '2' cols= '50'/>
-                  <button onClick={()=> {this.sendMessage()}}>Send</button>
+                  <button onClick={(event)=> {this.sendMessage(event)}}>Send</button>
               </form>
             </div>
           </div>
